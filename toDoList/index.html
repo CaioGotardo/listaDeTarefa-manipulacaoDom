@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> exercicio aula </title>
+    <style>
+        .concluido {
+            
+
+            text-decoration: line-through;
+
+
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+      
+
+        .agrupamentoAdicionar {
+            flex-direction: row;
+        }
+
+
+
+
+    </style>
+</head>
+
+<body>
+    <h1>lista de tarefa</h1>
+
+    <div class="agrupamentoAdicionar">
+        <input type="text" id="novaTarefa" placeholder="Digite uma nova tarefa">
+         <button id="adicionar">Adicionar </button>
+    </div>
+
+    <ul id="listaTarefa"></ul>
+
+
+    <script>
+        document.getElementById('adicionar').addEventListener('click', function () {
+            let inputTarefa = document.getElementById('novaTarefa');
+            let tarefaTexto = inputTarefa.value.trim(); //space left
+
+            if (tarefaTexto === "") return;  //input for vazio 
+
+
+            let lista = document.getElementById('listaTarefa');
+
+            let item = document.createElement('li')
+            item.textContent = tarefaTexto;
+
+
+            let btnConcluir = document.createElement('button');
+            btnConcluir.textContent = "Concluir";
+            btnConcluir.addEventListener('click', function () {
+                item.classList.toggle("concluido");
+            })
+
+
+            let btnRemover = document.createElement('button');
+            btnRemover.textContent = "remover";
+            btnRemover.addEventListener('click', function () {
+                lista.removeChild(item)
+            })
+
+
+            item.appendChild(btnConcluir);
+            item.appendChild(btnRemover);
+            lista.appendChild(item);
+
+
+            inputTarefa.value = "";
+            inputTarefa.focus();
+        })
+
+
+
+    </script>
+
+
+</body>
+
+</html>
